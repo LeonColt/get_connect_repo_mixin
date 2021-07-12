@@ -11,13 +11,13 @@ mixin RepositoryAuthHandlerMixin<T> on GetConnect {
     super.onInit();
     httpClient.addRequestModifier(
       ( final Request request ) async {
-        request.headers['Authorization'] = "Bearer ${ await accessToken }";
+        request.headers['Authorization'] = await accessToken;
         return request;
       },
     );
     httpClient.addAuthenticator<dynamic>(
       ( final Request request ) async {
-        request.headers['Authorization'] = "Bearer ${ await accessToken }";
+        request.headers['Authorization'] = await accessToken;
         return request;
       },
     );
