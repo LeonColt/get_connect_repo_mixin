@@ -23,6 +23,11 @@ mixin RepositoryErrorHandlerMixin on GetConnect {
           statusText: response.statusText,
           errorBody: response.bodyString,
         );
+      case HttpStatus.forbidden:
+        return new HttpForbiddenException(
+          statusText: response.statusText,
+          errorBody: response.bodyString,
+        );
       case HttpStatus.conflict:
         return new HttpConflictException(
           statusText: response.statusText,

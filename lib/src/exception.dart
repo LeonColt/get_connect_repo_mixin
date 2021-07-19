@@ -36,6 +36,14 @@ class HttpNotFoundException extends HttpException {
   );
 }
 
+class HttpForbiddenException extends HttpException {
+  const HttpForbiddenException({ final String? statusText, final String? errorBody, }) : super(
+    code: 403,
+    statusText: statusText,
+    errorBody: errorBody,
+  );
+}
+
 class HttpUnauthorizedException extends HttpException {
   const HttpUnauthorizedException({ final String? statusText, final String? errorBody, }) : super(
     code: 401,

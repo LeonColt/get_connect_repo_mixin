@@ -10,11 +10,14 @@ mixin RepositorySslHandlerMixin on GetConnect {
     super.onInit();
     if ( !kReleaseMode ) allowAutoSignedCert = true;
     else {
-      trustedCertificates = new List.unmodifiable([
-        new TrustedCertificate(
-          certificate,
-        ),
-      ]);
+      final cert = certificate;
+      if ( cert.isNotEmpty ) {
+        trustedCertificates = new List.unmodifiable([
+          new TrustedCertificate(
+            cert,
+          ),
+        ]);
+      }
     }
   }
 
