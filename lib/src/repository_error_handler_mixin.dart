@@ -6,44 +6,51 @@ import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'exception.dart';
 
 mixin RepositoryErrorHandlerMixin on GetConnect {
-  getException<T>( final Response<T> response ) {
-    switch( response.status.code ) {
+  getException<T>(final Response<T> response) {
+    switch (response.status.code) {
       case HttpStatus.badRequest:
-        return new HttpBadRequestException(
+        return HttpBadRequestException(
           statusText: response.statusText,
           errorBody: response.bodyString,
+          body: response.body,
         );
       case HttpStatus.notFound:
-        return new HttpNotFoundException(
+        return HttpNotFoundException(
           statusText: response.statusText,
           errorBody: response.bodyString,
+          body: response.body,
         );
       case HttpStatus.unauthorized:
-        return new HttpUnauthorizedException(
+        return HttpUnauthorizedException(
           statusText: response.statusText,
           errorBody: response.bodyString,
+          body: response.body,
         );
       case HttpStatus.forbidden:
-        return new HttpForbiddenException(
+        return HttpForbiddenException(
           statusText: response.statusText,
           errorBody: response.bodyString,
+          body: response.body,
         );
       case HttpStatus.conflict:
-        return new HttpConflictException(
+        return HttpConflictException(
           statusText: response.statusText,
           errorBody: response.bodyString,
+          body: response.body,
         );
-      default: {
-        if ( response.status.connectionError ) {
-          return new HttpConnectionError( response.statusText );
-        } else {
-          return new HttpException(
-            code: HttpStatus.notFound,
-            statusText: response.statusText,
-            errorBody: response.bodyString,
-          );
+      default:
+        {
+          if (response.status.connectionError) {
+            return HttpConnectionError(response.statusText);
+          } else {
+            return HttpException(
+              code: response.statusCode ?? 0,
+              statusText: response.statusText,
+              errorBody: response.bodyString,
+              body: response.body,
+            );
+          }
         }
-      }
     }
   }
 }
