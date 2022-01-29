@@ -8,19 +8,17 @@ mixin RepositorySslHandlerMixin on GetConnect {
   @override
   void onInit() {
     super.onInit();
-    if ( !kReleaseMode ) allowAutoSignedCert = true;
-    else {
+    if (!kReleaseMode) {
+      allowAutoSignedCert = true;
+    } else {
       final cert = certificate;
-      if ( cert.isNotEmpty ) {
-        trustedCertificates = new List.unmodifiable([
-          new TrustedCertificate(
-            cert,
-          ),
+      if (cert.isNotEmpty) {
+        trustedCertificates = List.unmodifiable([
+          TrustedCertificate(cert),
         ]);
       }
     }
   }
 
-  List<int> get certificate;
-
+  List<int> get certificate => const [];
 }
