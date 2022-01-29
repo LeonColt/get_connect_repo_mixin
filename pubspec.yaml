@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
 
   get:
+  synchronized:
 
 dev_dependencies:
   flutter_test:
