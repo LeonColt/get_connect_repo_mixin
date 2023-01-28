@@ -84,3 +84,16 @@ class HttpUnauthorizedException extends HttpException {
           body: body,
         );
 }
+
+class HttpTooManyRequestException extends HttpException {
+  const HttpTooManyRequestException({
+    final String? statusText,
+    final String? errorBody,
+    final dynamic body,
+  }) : super(
+          code: 429,
+          statusText: statusText,
+          errorBody: errorBody,
+          body: body,
+        );
+}

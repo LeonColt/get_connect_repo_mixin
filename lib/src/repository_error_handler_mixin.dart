@@ -38,6 +38,12 @@ mixin RepositoryErrorHandlerMixin on GetConnect {
           errorBody: response.bodyString,
           body: response.body,
         );
+      case HttpStatus.tooManyRequests:
+        return HttpTooManyRequestException(
+          statusText: response.statusText,
+          errorBody: response.bodyString,
+          body: response.body,
+        );
       default:
         {
           if (response.status.connectionError) {
