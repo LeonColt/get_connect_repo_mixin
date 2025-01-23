@@ -1,6 +1,6 @@
 name: get_connect_repo_mixin
 description: Get Connect Repository Mixin classes
-version: 0.0.4
+version: 0.0.6
 homepage: https://github.com/LeonColt/get_connect_repo_mixin
 
 environment:
